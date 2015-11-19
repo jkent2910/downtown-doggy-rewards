@@ -1,0 +1,20 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  encoding: unicode
+  timeout: 5000
+
+development:
+  <<: *default
+  database: downtown-doggy-rewards_development
+
+test: &test
+  <<: *default
+  database: downtown-doggy-rewards_test
+
+production:
+  <<: *default
+  database: downtown-doggy-rewards_production
+
+cucumber: 
+  <<: *test
