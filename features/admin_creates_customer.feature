@@ -3,6 +3,12 @@ Feature: Admin creates customer
   I want to create a customer record
   So that I can keep track of their rewards 
 
+  Background:
+    Given the following customers:
+    | first_name| last_name |
+    | Julie     | Kent      |
+    | Troy      | Renken    |
+
   Scenario: Admin creates customer
     Given I am Carrie
     And I am signed in
@@ -14,3 +20,16 @@ Feature: Admin creates customer
     When I press "Create"
     Then I should be on the customer show page
     And I should see "Customer was successfully created"
+
+  Scenario: Admin edits customer
+    Given I am Carrie 
+    And I am signed in
+    And I visit a customer page
+    And I follow "Edit Customer"
+    And I fill in "First name" with "Troy"
+    And I fill in "Last name" with "Renken"
+    When I press "Update"
+    Then I should be on the customer show page
+    And I should see "Customer successfully updated"
+
+

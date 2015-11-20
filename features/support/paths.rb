@@ -21,6 +21,12 @@ module NavigationHelpers
       customer = Customer.last 
       customer_path(customer)
 
+    when /the customers index page/
+      customers_path
+
+    when /a customer page/ 
+      customer = FactoryGirl.create(:customer)
+      customer_path(customer)
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

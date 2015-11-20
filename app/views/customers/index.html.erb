@@ -1,1 +1,6 @@
-index.html.erb
+
+<% @customers.each do |customer| %>
+  <%= customer.first_name %>
+  <%= customer.last_name %>
+  <%= link_to "Edit Customer", edit_customer_path(customer) %>
+  <% end %>
