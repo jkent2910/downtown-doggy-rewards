@@ -15,7 +15,7 @@
 </div>
 
 <div class="container">
-  <%= link_to "Add Punches", new_customer_punch_path(@customer), class: "btn btn-primary" %>
+  <%= link_to "Add or Remove Punches", new_customer_punch_path(@customer), class: "btn btn-primary" %>
 </div>
 
 <div class="container">
@@ -25,6 +25,7 @@
     <div class="col-md-12">
       <p>Category: <%= punch.punch_category %> </p>
       <p>Number of punches: <%= punch.punch_number %> </p>
+      <p>Punch action: <%= punch.punch_action %></p>
       <p>Date added: <%= punch.created_at.strftime("%I:%M:%S:%p") %> </p>
       <p>Added by: <%= current_admin.email %></p>
     </div>

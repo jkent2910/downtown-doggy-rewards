@@ -1,9 +1,14 @@
-<%= form_for([@customer, @customer.punches.build]) do |f| %>
-  <%= f.label :punch_category %><br>
-  <%= f.select :punch_category, options_for_select(Punch::VALID_PUNCH_CATEGORIES) %><br>
-  <br>
-  <%= f.label :punch_number %><br>
-  <%= f.text_field :punch_number %><br>
-  <br>
-  <%= f.submit %>
-<% end %>
+<div class="container">
+  <%= form_for([@customer, @customer.punches.build]) do |f| %>
+    <%= f.label :punch_category %><br>
+    <%= f.select :punch_category, options_for_select(Punch::VALID_PUNCH_CATEGORIES) %><br>
+    <br>
+    <%= f.label :punch_number %><br>
+    <%= f.text_field :punch_number %><br>
+    <br>
+    <%= f.label :punch_action %><br>
+    <%= f.select :punch_action, options_for_select(Punch::VALID_PUNCH_ACTIONS) %><br>
+    <br>
+    <%= f.submit %>
+  <% end %>
+</div>

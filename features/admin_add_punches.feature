@@ -13,9 +13,10 @@ Feature: Admin adds punches
 
   Scenario: Admin adds punch to customer
     Given I visit a customer page
-    And I follow "Add Punches"
+    And I follow "Add or Remove Punches"
     And I select "Daycare" from "Punch category"
     And I fill in "Punch number" with "1"
+    And I select "Add Punches" from "Punch action"
     And I press "Create"
     Then I should be on the customer show page
     And I should see "Punch(es) successfully added"
