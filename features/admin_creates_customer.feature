@@ -32,4 +32,12 @@ Feature: Admin creates customer
     Then I should be on the customer show page
     And I should see "Customer successfully updated"
 
+  Scenario: Admin deletes customer
+    Given I am Carrie
+    And I am signed in
+    And I visit a customer page 
+    And I follow "Delete Customer"
+    Then I should be on the customers index page
+    And I should see "Customer successfully deleted"
+
 
