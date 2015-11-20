@@ -8,6 +8,7 @@ class CustomersController < ApplicationController
   end
 
   def show
+    @punches = Punch.where(customer_id: @customer.id).order("created_at DESC")
   end
 
   def new
