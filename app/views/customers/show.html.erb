@@ -1,18 +1,38 @@
-<%= @customer.first_name %>
-<%= @customer.last_name %>
-<br />
-<h4> Total Daycare Punches: </h4><%= @customer.punches.where(punch_category: 'Daycare').sum(:punch_number) %>
-<h4> Total Boarding Punches: </h4><%= @customer.punches.where(punch_category: 'Boarding').sum(:punch_number) %>
-<br />
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h3>Customer: <%= @customer.first_name %> <%= @customer.last_name %></h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h4> Total Daycare Punches: <%= @customer.punches.where(punch_category: 'Daycare').sum(:punch_number) %> </h4>
+    </div>
+    <div class="col-md-4">
+      <h4> Total Boarding Punches: <%= @customer.punches.where(punch_category: 'Boarding').sum(:punch_number) %> </h4>
+    </div>
+  </div>
+</div>
 
+<div class="container">
+  <%= link_to "Add Punches", new_customer_punch_path(@customer), class: "btn btn-primary" %>
+</div>
 
-<% @punches.each do |punch| %>
-  <%= punch.punch_category %>
-  <%= punch.punch_number %>
-  <%= punch.created_at %>
+<div class="container">
+  <h4>Punches Added</h4>
+  <div class="row">
+  <% @punches.each do |punch| %>
+    <div class="col-md-12">
+      <p>Category: <%= punch.punch_category %> </p>
+      <p>Number of punches: <%= punch.punch_number %> </p>
+      <p>Date added: <%= punch.created_at.strftime("%I:%M:%S:%p") %> </p>
+      <p>Added by: <%= current_admin.email %></p>
+    </div>
   <% end %>
+  </div>
+</div>
 
-
-<%= link_to "Edit Customer", edit_customer_path(@customer), class: "btn btn-default" %>
-<%= link_to "Delete Customer", customer_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
-<%= link_to "Add Punches", new_customer_punch_path(@customer) %>
+<div class="container">
+  <%= link_to "Edit Customer", edit_customer_path(@customer), class: "btn btn-default" %>
+  <%= link_to "Delete Customer", customer_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
+</div>
