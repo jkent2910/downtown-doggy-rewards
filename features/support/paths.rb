@@ -17,6 +17,10 @@ module NavigationHelpers
     when /sign in page/
       new_admin_session_path
 
+    when /the customer show page/
+      customer = Customer.last 
+      customer_path(customer)
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
