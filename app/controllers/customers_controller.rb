@@ -61,8 +61,8 @@ class CustomersController < ApplicationController
 
     def check_for_existing_customer 
       if current_admin 
-      elsif current_user.customer 
-        redirect_to current_user.customer, notice: "You already have a customer account"
+      elsif Customer.where(email: current_user.email).any?
+        redirect_to home_path, notice: "You already have a customer account"
       end
     end
 
