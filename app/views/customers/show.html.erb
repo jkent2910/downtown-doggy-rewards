@@ -6,6 +6,16 @@
   </div>
   <div class="row">
     <div class="col-md-12">
+      <h4 class="header-centered">
+        <% if current_admin %>
+          <%= mail_to @customer.email, "Send E-mail", class: "btn btn-default" %>
+        <% elsif current_user %>
+          <%= mail_to 'dmdoggy@gmail.com', "Send E-mail", class: "btn btn-default" %>
+        <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
       <h4 class="header-centered"> Total Daycare Punches: <%= @customer.punches.where(punch_category: 'Daycare').sum(:punch_number) %> </h4>
     </div>
     <div class="col-md-12">
@@ -17,7 +27,10 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12 header-centered">
-      <%= link_to "Add or Remove Punches", new_customer_punch_path(@customer), class: "btn btn-primary" %>
+      <% if admin_signed_in? %>
+        <%= link_to "Add or Remove Punches", new_customer_punch_path(@customer), class: "btn btn-primary" %>
+      <% else %>
+      <% end %>
     </div>
   </div>
 </div>

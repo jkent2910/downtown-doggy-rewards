@@ -1,0 +1,12 @@
+<div class="container">
+  <h1>Downtown Doggy Rewards System</h1>
+</div>
+
+<div class="container">
+  <% if Customer.where(email: @user.email).any? %>
+    <%= link_to "View Your Rewards", customer_path(@customer), class: "btn btn-primary" %>
+  <% else %>
+    <h4>We didn't find you in our system!  Use the button below to sign-up for a rewards account</h4>
+    <%= link_to "Create new account", new_customer_path, class: "btn btn-default" %>
+  <% end %>
+</div>
