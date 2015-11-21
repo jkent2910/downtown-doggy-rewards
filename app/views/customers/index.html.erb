@@ -1,6 +1,20 @@
-
-<% @customers.each do |customer| %>
-  <%= customer.first_name %>
-  <%= customer.last_name %>
-  <%= link_to "Edit Customer", edit_customer_path(customer) %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="header-centered">Customers</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 header-centered">
+      <%= link_to "Add New Customer", new_customer_path, class: "btn btn-primary" %>
+    </div>
+  </div>
+  <% @customers.each do |customer| %> <br />
+  <div class="row well">
+    <h4 class="inline-text"><%= customer.full_name %></h4>
+    <%= link_to "View", customer_path(customer) %>  |
+    <%= link_to "Edit", edit_customer_path(customer) %>  |
+    <%= link_to "Add/Remove Punches", new_customer_punch_path(customer) %>
+  </div>
   <% end %>
+</div>

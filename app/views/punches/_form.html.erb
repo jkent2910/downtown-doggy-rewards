@@ -9,6 +9,6 @@
     <%= f.label :punch_action %><br>
     <%= f.select :punch_action, options_for_select(Punch::VALID_PUNCH_ACTIONS) %><br>
     <br>
-    <%= f.submit %>
+    <%= f.submit class: 'btn btn-default'  %>
   <% end %>
-</div>
+</div><br />

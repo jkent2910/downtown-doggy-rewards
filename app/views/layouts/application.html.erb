@@ -8,10 +8,23 @@
 </head>
 <body>
 
-  <%= form_tag search_path, class: "form-inline pull-right", role: "search" do %>
-  <%= text_field_tag :query, '', class: "form-controler", placeholder: "Search" %>
-  <button type="submit" class="btn btn-default">Go</button>
-  <% end %>
+  <div class="container-fluid nav-container">
+    <div class="row nav">
+      <% if admin_signed_in? %>
+        <%= link_to "Customer Dashboard", customers_path, :class => "btn btn-default" %>
+        <%= link_to "Admin Sign Out", destroy_admin_session_path, :method => :delete, :class => "btn btn-default sign-out-btn" %> 
+        <%= form_tag search_path, class: "form-inline pull-right", role: "search" do %>
+          <%= text_field_tag :query, '', class: "form-controler", placeholder: "Search" %>
+          <button type="submit" class="btn btn-default">Go</button>
+        <% end %>
+      <% elsif user_signed_in? %>
+        <%= link_to "User Sign Out", destroy_user_session_path, :method => :delete, :class => "btn btn-default" %>
+      <% else %>
+        <%= link_to "Admin Sign In", new_admin_session_path, :class => "btn btn-default" %>
+        <%= link_to "User Sign In", new_user_session_path, :class => "btn btn-default" %>
+      <% end %>
+    </div>
+  </div>
 
 <%= flash_messages %>
 

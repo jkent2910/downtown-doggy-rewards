@@ -15,6 +15,39 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+/* Navigation */ 
+.nav-container {
+  border-bottom: 1px;
+  border-style: none none solid;
+  background-color: #2B75ED;
+  margin-bottom: 20px;
+}
+
+.nav {
+  padding-top: 10px;
+  float: right;
+  margin-bottom: 15px;
+  margin-right: 10px;
+}
+
+.sign-out-btn {
+  margin-right: 10px;
+}
+
+/* Customers Index */ 
+.header-centered {
+  text-align: center;
+}
+
+.inline-text {
+  display: inline;
+}
+
+/* Links Container */
+.links {
+  margin-bottom: 25px;
+}
+
 /* Admin sign in and sign up forms. */
 .border-form-div {
   max-width: 300px;

@@ -9,7 +9,7 @@ module NavigationHelpers
     case page_name
 
     when /the admin home page/ 
-      root_path
+      customers_path
 
     when /the homepage/
       root_path
