@@ -1,0 +1,14 @@
+<div class="container" id="customer-search-results">
+  <h1>Search Results</h1>
+
+  <h2>Customers</h2>
+  <% if @customers.nil? || @customers.empty? %>
+    <p>No customers were found</p>
+  <% else %>
+    <ul>
+      <% @customers.each do |customer| %>
+        <li><%= link_to customer.full_name, customer %></li> 
+      <% end %>
+    </ul>
+  <% end %>
+</div>
