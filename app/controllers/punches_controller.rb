@@ -2,6 +2,8 @@ class PunchesController < ApplicationController
   before_action :set_punch, only: [:show, :edit, :update, :destroy]
  
   before_action :set_customer
+
+  after_action :set_negative_value, only: [:create, :update]
   
   def new
     @punch = Punch.new
@@ -10,9 +12,9 @@ class PunchesController < ApplicationController
   def create
     @punch = Punch.new(punch_params)
     @punch.customer_id = @customer.id
-    
+
     if @punch.save
-      redirect_to @customer, notice: "Punch(es) successfully added"
+      redirect_to @customer, notice: "Punch(es) successfully added or redeemed"
     else
       render 'new'
     end 
@@ -47,5 +49,13 @@ class PunchesController < ApplicationController
       params.require(:punch).permit(:punch_category, :punch_number, :punch_action)
     end
 
-  
+    def set_negative_value
+      if punch_params[:punch_action] == 'Remove Punches'
+        p = punch_params[:punch_number].to_i 
+        p = -p
+        p = p.to_s
+        @punch.update_attribute(:punch_number, p)
+      elsif punch_params[:punch_action] == 'Add Punches'
+      end
+    end
 end
