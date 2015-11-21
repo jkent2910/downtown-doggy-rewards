@@ -4,6 +4,8 @@ class PunchesController < ApplicationController
   before_action :set_customer
 
   after_action :set_negative_value, only: [:create, :update]
+
+  before_action :authenticate_admin! 
   
   def new
     @punch = Punch.new

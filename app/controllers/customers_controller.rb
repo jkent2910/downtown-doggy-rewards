@@ -1,7 +1,9 @@
 class CustomersController < ApplicationController
 
-  before_action :authenticate_admin!, only: [:edit, :update, :new, :create]
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :check_for_existing_customer, only: [:new, :create] 
+  before_action :ensure_customer_ownership, only: [:edit, :update, :destroy, :show]
+  before_action :check_for_admin, only: [:index]
 
   def index 
     @customers = Customer.order(:last_name)
@@ -17,6 +19,13 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
+
+    if user_signed_in? 
+      @user = current_user
+      @customer.user_id = @user.id 
+    else 
+    end 
+
     if @customer.save
       redirect_to @customer, notice: 'Customer was successfully created'
     else
@@ -43,11 +52,31 @@ class CustomersController < ApplicationController
   private
 
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name)
+      params.require(:customer).permit(:first_name, :last_name, :email, :user_id)
     end
 
     def set_customer
       @customer = Customer.find(params[:id])
+    end
+
+    def check_for_existing_customer 
+      if current_admin 
+      elsif current_user.customer 
+        redirect_to current_user.customer, notice: "You already have a customer account"
+      end
+    end
+
+    def ensure_customer_ownership 
+      if current_admin 
+      elsif current_user.email != Customer.find(params[:id]).email
+        redirect_to home_path, notice: "You are not allowed to view other customer accounts"
+      end
+    end
+
+    def check_for_admin 
+      if current_user
+        redirect_to home_path, notice: "You are not allowed to view this page"
+      end
     end
 
 
