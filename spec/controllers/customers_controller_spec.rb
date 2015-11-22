@@ -36,6 +36,22 @@ RSpec.describe CustomersController, type: :controller do
       end
     end
 
+    context "when a user tries to view the index page" do 
+      before do 
+        @user = FactoryGirl.create(:user)
+        sign_in @user
+        get :index, {}, valid_session  
+      end
+
+      it "redirects to home path" do 
+        expect(response).to redirect_to(home_path)
+      end
+
+      it "displays an appropriate message" do 
+        expect(flash[:notice]).to match ("not allowed")
+      end
+    end
+
     describe "GET #show" do
       it "assigns the requested customer as @customer" do 
         customer = Customer.create! valid_attributes
