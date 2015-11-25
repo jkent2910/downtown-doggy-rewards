@@ -51,33 +51,28 @@ class CustomersController < ApplicationController
 
   private
 
-    def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :email, :user_id)
+  def customer_params
+    params.require(:customer).permit(:first_name, :last_name, :email, :user_id)
+  end
+
+  def set_customer
+    @customer = Customer.find(params[:id])
+  end
+
+  def check_for_existing_customer 
+    return if current_admin or Customer.where(email: current_user.email).none?
+    redirect_to home_path, notice: "You already have a customer account"
+  end
+
+
+  def ensure_customer_ownership 
+    return if current_admin or current_user.email == Customer.find(params[:id]).email
+    redirect_to home_path, notice: "You are not allowed to view other customer accounts"
+  end
+
+  def check_for_admin 
+    if current_user
+      redirect_to home_path, notice: "You are not allowed to view this page"
     end
-
-    def set_customer
-      @customer = Customer.find(params[:id])
-    end
-
-    def check_for_existing_customer 
-      if current_admin 
-      elsif Customer.where(email: current_user.email).any?
-        redirect_to home_path, notice: "You already have a customer account"
-      end
-    end
-
-    def ensure_customer_ownership 
-      if current_admin 
-      elsif current_user.email != Customer.find(params[:id]).email
-        redirect_to home_path, notice: "You are not allowed to view other customer accounts"
-      end
-    end
-
-    def check_for_admin 
-      if current_user
-        redirect_to home_path, notice: "You are not allowed to view this page"
-      end
-    end
-
-
+  end
 end
