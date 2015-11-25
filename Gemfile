@@ -20,6 +20,7 @@ group :development, :test do
   gem 'cucumber-rails', '~> 1.4.2', :require => false
   gem 'database_cleaner', '~> 1.4.1'
   gem 'factory_girl_rails', '~> 4.5.0'
+  gem 'guard-rspec', '~> 4.6.4', require: false
   gem 'pry-byebug'
   gem 'rspec-rails', '~> 3.2.1'
   gem 'spring'
