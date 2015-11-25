@@ -16,10 +16,10 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      <h4 class="header-centered"> Total Daycare Punches: <%= @customer.punches.where(punch_category: 'Daycare').sum(:punch_number) %> </h4>
+      <h4 class="header-centered"> Total Daycare Punches: <%= @customer.total_punches('DayCare') %> </h4>
     </div>
     <div class="col-md-12">
-      <h4 class="header-centered"> Total Boarding Punches: <%= @customer.punches.where(punch_category: 'Boarding').sum(:punch_number) %> </h4>
+      <h4 class="header-centered"> Total Boarding Punches: <%= @customer.total_punches('Boarding') %> </h4>
     </div>
   </div>
 </div>
@@ -37,23 +37,18 @@
 
 <div class="container">
   <h4>Punch History</h4>
-  <div class="row">
-  <% if @punches.any? %>
   <% @punches.each do |punch| %>
-    <div class="col-md-12 well">
+  <div class="row well">
+    <div class="col-md-12">
       <p><strong>Category:</strong> <%= punch.punch_category %> </p>
       <p><strong>Number of punches:</strong> <%= punch.punch_number %> </p>
       <p><strong>Date added:</strong> <%= punch.created_at.strftime("%D %I:%M:%p") %> </p>
-      <% end %>
     </div>
-  <% else %>
-  <% end %>
   </div>
+  <% end %>
 </div>
 
 <div class="container links">
   <%= link_to "Edit Customer", edit_customer_path(@customer), class: "btn btn-default" %>
   <%= link_to "Delete Customer", customer_path, method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-danger" %>
 </div>
-
-<%= @test_variable %>
