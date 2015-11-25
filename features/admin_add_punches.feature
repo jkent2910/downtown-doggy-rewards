@@ -1,12 +1,12 @@
 Feature: Admin adds punches
   As an Admin
   I want to be able to add punches to a customer's account
-  So that I can keep track of their rewards 
+  So that I can keep track of their rewards
 
   Background:
     Given I am Carrie
     And the following customers:
-    | first_name| last_name | 
+    | first_name| last_name |
     | Julie     | Kent      |
     | Troy      | Renken    |
     And I am signed in
@@ -16,7 +16,6 @@ Feature: Admin adds punches
     And I follow "Add or Remove Punches"
     And I select "Daycare" from "Punch category"
     And I fill in "Punch number" with "1"
-    And I select "Add Punches" from "Punch action"
     And I press "Create"
     Then I should be on the customer show page
     And I should see "Punch(es) successfully added or redeemed"
@@ -25,8 +24,7 @@ Feature: Admin adds punches
     Given I visit a customer page
     And I follow "Add or Remove Punches"
     And I select "Daycare" from "Punch category"
-    And I fill in "Punch number" with "6"
-    And I select "Remove Punches" from "Punch action"
+    And I fill in "Punch number" with "-6"
     And I press "Create"
     Then I should be on the customer show page
     And I should see "Punch(es) successfully added or redeemed"

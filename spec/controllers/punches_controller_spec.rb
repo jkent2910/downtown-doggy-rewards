@@ -11,8 +11,7 @@ RSpec.describe PunchesController, type: :controller do
   let(:valid_parameters) {
     {
       punch_category: "Boarding",
-      punch_number: 1,
-      punch_action: 'Add Punches'
+      punch_number: 1
     }
   }
 
