@@ -7,7 +7,7 @@ class WelcomeController < ApplicationController
 
   def user_home
     @user = current_user 
-    @customer = Customer.find_by(email: @user.email).to_param
+    @customer = Customer.find_by(email: @user.email.downcase).to_param
   end
 
 

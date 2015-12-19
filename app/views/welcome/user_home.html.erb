@@ -3,7 +3,7 @@
 </div>
 
 <div class="container">
-  <% if Customer.where(email: @user.email).any? %>
+  <% if @user.email = Customer.where(email: @user.email) %>
     <%= link_to "View Your Rewards", customer_path(@customer), class: "btn btn-primary" %>
   <% else %>
     <h4>We didn't find you in our system!  Use the button below to sign-up for a rewards account</h4>
