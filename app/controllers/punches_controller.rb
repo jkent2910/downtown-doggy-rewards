@@ -46,6 +46,6 @@ class PunchesController < ApplicationController
     end
     
     def punch_params
-      params.require(:punch).permit(:punch_category, :punch_number)
+      params.require(:punch).permit(:punch_category, :punch_number, :note)
     end
 end

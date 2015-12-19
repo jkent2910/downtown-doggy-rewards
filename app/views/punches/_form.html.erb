@@ -4,8 +4,26 @@
     <%= f.select :punch_category, options_for_select(Punch::VALID_PUNCH_CATEGORIES) %><br>
     <br>
     <%= f.label :punch_number %><br>
-    <%= f.text_field :punch_number %><br>
+    <%= f.text_field :punch_number, :id => "punch-number" %><br>
     <br>
-    <%= f.submit class: 'btn btn-default'  %>
+    <%= f.label :note %><br>
+    <%= f.text_area :note, :class => "form-control" %><br>
+    <br>
+    <%= f.submit "Add Punch", class: 'btn btn-default btn-punch'  %>
   <% end %>
 </div><br />
+
+<script>
+$(document).ready(function() {
+  $('#punch-number').keyup(function() {     
+    var x = $('#punch-number').val()
+    console.log(x)
+    if (x.indexOf('-') === -1) {
+      $('.btn-punch').attr('value', 'Add Punch')
+    } else {
+      $('.btn-punch').attr('value', 'Remove Punch')
+      $('.btn-punch').toggleClass('btn-danger')
+    }
+  });
+});
+</script>
